@@ -37,7 +37,7 @@ These are a couple of the main requirements for this school project:
 | 9 | *public* | **getLogin()** | None | Returns the user’s **`login`** |
 | 10 | *public* | **getEmail()** | None | Returns the user’s **`email`** |
 | 11 | *public* | **getFirstname()** | None | Returns the user’s **`firstname`** |
-| 12 | *public* | **getLastname()** | None | Returns the user’s **`lastanem`** |
+| 12 | *public* | **getLastname()** | None | Returns the user’s **`lastname`** |
 
 
 ## Jobs

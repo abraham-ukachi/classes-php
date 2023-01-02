@@ -52,7 +52,7 @@ Here is a list of all the names and files (i.e. `php`) to be submitted as well a
 
 | No. | Name | File | Status |
 |:----|:-----|:-----|:-------|
-| 1 | *`User - MYSQLI`* | **user.php** | Pending |
+| 1 | *`User - MYSQLI`* | **user.php** | *In progress* |
 
 > NOTE: (\*) = still needs to be updated. And for more info on this job including **Job Description**, see the source files.
 

@@ -74,12 +74,16 @@ The folder & file structure of this project:
   
 - LICENSE
 - README.md
+- [test](./test)
+- - *database.php*
+- - ...
 - [demo](./demo)
 - - *user.php*
 - - *user-pdo.php*
 - ...
 - **user.php**
 - **user-pdo.php**
+- **database.php**
 
 > NOTE: This is just a snippet.
 

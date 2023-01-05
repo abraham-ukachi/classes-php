@@ -136,8 +136,8 @@ These are some of the things I did or plan to do, in addition to this project's 
 | 1 | *`User - MYSQLI - Demo`* | **demo/user.php** | Pending |
 | 2 | *`User - PDO - Demo`* | **demo/user-pdo.php** | Pending |
 | 3 | *`Database`* | **database.php** | [Done](./database.php)\* |
-| 4 | *`Database - MYSQL - Test`* | **test/database.php** | [Done](./database.php)\* |
-| 5 | *`Database - PDO - Test`* | **test/database-pdo.php** | [Done](./database.php)\* |
+| 4 | *`Database - MYSQL - Test`* | **test/database.php** | [Done](./test/database.php)\* |
+| 5 | *`Database - PDO - Test`* | **test/database-pdo.php** | [Done](./test/database-pdo.php)\* |
  
 
 > NOTE: (\*) = still needs to be updated. <br>

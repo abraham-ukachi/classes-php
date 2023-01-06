@@ -106,8 +106,8 @@ class Database {
   private $db_type;
 
   // protected properties
-  public $mysqli;
-  public $pdo;
+  protected $mysqli;
+  protected $pdo;
 
   // public properties
   // - connection errors

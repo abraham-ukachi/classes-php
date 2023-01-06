@@ -40,8 +40,11 @@
 // Require/Import [once] the database file
 require_once '../database.php';
 
+// Create shortcut of the `ClassesPhp` namespace as `cp`;
+use ClassesPhp as cp;
+
 // Instantiate the `Database` class as `database`
-$database = new Database(Database::TYPE_PDO, false);
+$database = new cp\Database(cp\Database::TYPE_PDO, false);
 // create the database if it doesn't exist
 $database->dbCreation();
 

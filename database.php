@@ -31,8 +31,9 @@
 * @version: 0.0.1
 * 
 * Usage:
-*   1-|> require_once 'database.php';
-*    -|> $database = new Database('mysqli'); // <- or 'pdo'
+*   1-|> require_once __DIR__ . '/database.php';
+*    -|> Use ClassesPhp as cp;
+*    -|> $database = new cp\Database('mysqli'); // <- or 'pdo'
 *
 *
 *   2-|> // Handling database creation error
@@ -49,7 +50,7 @@
 *    -|>  }
 *
 *
-*   4-|> $database = new Database(Database::TYPE_PDO, false);
+*   4-|> $database = new cp\Database(cp\Database::TYPE_PDO, false);
 *    -|> $database->dbCreation();
 *
 */
@@ -60,6 +61,17 @@
  * MOTTO: I'll always do more 😜!!!
  * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
  */
+
+// Declare a namespace named `ClassesPhp`
+namespace ClassesPhp;
+
+
+// Using some core PHP Classes...
+
+use pdo;
+use mysqli;
+use mysqli_driver;
+
 
 
 // Uncomment the code below, to enable return type in PHP functions
@@ -73,7 +85,7 @@
  *
  * Example usage:
  *  
- *    $database = new Database(Database::TYPE_MYSQLI);
+ *    $database = new ClassesPhp\Database(ClassesPhp\Database::TYPE_PDO);
  *    $conn = $database->mysqli;
  */
 class Database {
@@ -546,3 +558,5 @@ class Database {
   }
 
 }
+
+?>

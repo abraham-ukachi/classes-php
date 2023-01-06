@@ -142,6 +142,7 @@ These are some of the things I did or plan to do, in addition to this project's 
 | 3 | *`Database`* | **Database.php** | [Done](./Database.php)\* |
 | 4 | *`Database - MYSQL - Test`* | **test/database.php** | [Done](./test/database.php)\* |
 | 5 | *`Database - PDO - Test`* | **test/database-pdo.php** | [Done](./test/database-pdo.php)\* |
+| 6 | *`Response Handler - Trait`* | **ResponseHandler.php** | _*In progress*_ |
  
 
 > NOTE: (\*) = still needs to be updated. <br>

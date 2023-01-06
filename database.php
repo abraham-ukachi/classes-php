@@ -86,7 +86,7 @@ use mysqli_driver;
  * Example usage:
  *  
  *    $database = new ClassesPhp\Database(ClassesPhp\Database::TYPE_PDO);
- *    $conn = $database->mysqli;
+ *    $conn = $database->pdo;
  */
 class Database {
 

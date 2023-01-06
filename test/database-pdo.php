@@ -38,7 +38,7 @@
  */
 
 // Require/Import [once] the database file
-require_once '../database.php';
+require_once '../Database.php';
 
 // Create shortcut of the `ClassesPhp` namespace as `cp`;
 use ClassesPhp as cp;

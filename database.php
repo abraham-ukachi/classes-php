@@ -26,12 +26,12 @@
 * @name Database
 * @demo demo/database.php
 * @test test/database.php, test/database-pdo.php
-* @file database.php
+* @file Database.php
 * @author: Abraham Ukachi <abraham.ukachi@laplateforme.io>
 * @version: 0.0.1
 * 
 * Usage:
-*   1-|> require_once __DIR__ . '/database.php';
+*   1-|> require_once __DIR__ . '/Database.php';
 *    -|> Use ClassesPhp as cp;
 *    -|> $database = new cp\Database('mysqli'); // <- or 'pdo'
 *
@@ -558,5 +558,3 @@ class Database {
   }
 
 }
-
-?>

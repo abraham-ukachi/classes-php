@@ -75,7 +75,7 @@ The folder & file structure of this project:
 - LICENSE
 - README.md
 - [test](./test)
-- - *database.php*
+- - *Database.php*
 - - ...
 - [demo](./demo)
 - - *user.php*
@@ -83,7 +83,7 @@ The folder & file structure of this project:
 - ...
 - **user.php**
 - **user-pdo.php**
-- **database.php**
+- **Database.php**
 
 > NOTE: This is just a snippet.
 
@@ -139,7 +139,7 @@ These are some of the things I did or plan to do, in addition to this project's 
 |:----|:-----|:-----|:-------|
 | 1 | *`User - MYSQLI - Demo`* | **demo/user.php** | Pending |
 | 2 | *`User - PDO - Demo`* | **demo/user-pdo.php** | Pending |
-| 3 | *`Database`* | **database.php** | [Done](./database.php)\* |
+| 3 | *`Database`* | **Database.php** | [Done](./Database.php)\* |
 | 4 | *`Database - MYSQL - Test`* | **test/database.php** | [Done](./test/database.php)\* |
 | 5 | *`Database - PDO - Test`* | **test/database-pdo.php** | [Done](./test/database-pdo.php)\* |
  

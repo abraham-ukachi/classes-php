@@ -105,3 +105,6 @@ dist
 
 # Vim's files
 *.swp
+
+# DS_Store
+*.DS_Store

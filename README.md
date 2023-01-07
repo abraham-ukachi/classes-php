@@ -43,7 +43,7 @@ These are a couple of the main requirements for this school project:
 ## Jobs
 > MOTTO: I'll always do [**more**](#More) 😜
 
-The official deadline of the jobs below - according to [intra](https://intra.laplateforme.io) - was **07-01-2023 at 06:25 AM**. There are **2 Jobs** in this project aptly named [Etape 01: Classe avec Mysqli](#Etape-01:-Classe-avec-Mysqli) and [Etape 02: Classe avec PDO](#Etape-02:-Classe-avec-PDO), which I detail below:
+The official deadline of the jobs below - according to [intra](https://intra.laplateforme.io) - was **07-01-2023 at 06:25 AM**. There are **2 Jobs** in this project aptly named [**Etape 01: Classe avec Mysqli**](#Etape-01:-Classe-avec-Mysqli) and [**Etape 02: Classe avec PDO**](#Etape-02:-Classe-avec-PDO), which I detail below:
 
 
 ### Etape 01: Classe avec Mysqli
@@ -142,7 +142,7 @@ These are some of the things I did or plan to do, in addition to this project's 
 | 3 | *`Database`* | **Database.php** | [Done](./Database.php)\* |
 | 4 | *`Database - MYSQL - Test`* | **test/database.php** | [Done](./test/database.php)\* |
 | 5 | *`Database - PDO - Test`* | **test/database-pdo.php** | [Done](./test/database-pdo.php)\* |
-| 6 | *`Response Handler - Trait`* | **ResponseHandler.php** | _*In progress*_ |
+| 6 | *`Response Handler - Trait`* | **ResponseHandler.php** | [Done](./ResponseHandler.php)\* |
  
 
 > NOTE: (\*) = still needs to be updated. <br>

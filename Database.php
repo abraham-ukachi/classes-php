@@ -100,12 +100,12 @@ class Database {
   private $db_host = '127.0.0.1';
   private $db_username = 'abraham-ukachi';
   private $db_password = 'root';
-  private $db_name = 'classes';
-  private $db_tablename = 'utilisateurs';
-  
   private $db_type;
 
   // protected properties
+  protected $db_name = 'classes';
+  protected $db_tablename = 'utilisateurs';
+
   protected $mysqli;
   protected $pdo;
 

@@ -71,6 +71,7 @@ trait ResponseHandler {
   private static $STATUS_ERROR_PAYMENT_REQUIRED = 402;
   private static $STATUS_ERROR_FORBIDDEN = 403;
   private static $STATUS_ERROR_NOT_FOUND = 404;
+  private static $STATUS_ERROR_UNPROCESSABLE_ENTITY = 422;
   private static $STATUS_ERROR_INTERNAL_ERROR = 500;
   private static $STATUS_ERROR_NOT_IMPLEMENTED = 501;
   private static $STATUS_ERROR_SERVICE_TEMP_OVERLOADED = 502;

@@ -40,6 +40,11 @@
  * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
  */
 
+// Let's enable all of PHP's error reports
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+
 
 // Require/Import [once] the user file
 require_once '../user.php';
@@ -48,8 +53,8 @@ require_once '../user.php';
 use ClassesPhp as cp;
 
 // Initialize some variables
-$login = 'abraham-ukachi';
-$password = 'jesuschrist';
+$login = 'abraham-ukachi'; # <- 'abraham-ukachi';
+$password = 'ilovenasa'; # <- b4: 'jesuschrist';
 $email = 'abraham.ukachi@laplateforme.io';
 $firstname = 'Abraham';
 $lastname = 'Ukachi';
@@ -111,7 +116,7 @@ $testConnect = function() use ($login, $password) {
   // METHOD 1: Instantiate the `User` class as `user` with login and password
   $user = new cp\User($login, $password);
   
-  printf("\n[testConnect]: user->firstname %s\n", $user->firstname);
+  printf("\n[testConnect]: user->getFirstname() => %s user->getLastname() => %s\n", $user->getFirstname(), $user->getLastname());
 
   // METHOD 2
 
@@ -127,6 +132,9 @@ $testConnect = function() use ($login, $password) {
 $testDisconnect = function() use ($login, $password) {
   // METHOD 1: Instantiate the `User` class as `user` with login and password
   $user = new cp\User($login, $password);
+  // $user = new cp\User();
+
+  echo "user first name -> " . $user->getFirstname() . "<br>";
 
   // check [BEFORE] connection
   printf("\n\x1b[2m[testDisconnect]:\x1b[0m [BEFORE] isConnected() ? \x1b[34m%s\x1b[0m\n", 
@@ -176,7 +184,7 @@ $testDelete = function() use ($login, $password) {
 $testUpdateLogin = function() use ($login, $password) {
   // METHOD 1: Instantiate the `User` class as `user` with login and password
   $user = new cp\User($login, $password);
-  $user->updateLogin('abraham-ukachi');
+  $user->updateLogin('abraham2023');
 
   // METHOD 2
 
@@ -256,15 +264,18 @@ $testUpdateLastname = function() use ($login, $password) {
 $testUpdate = function() use ($login, $password) {
   // METHOD 1: Instantiate the `User` class as `user` with login and password
   $user = new cp\User($login, $password);
-  // $user->update('abilasco', 'Abilascolovesjames1!', null, 'Abraham', 'Smith');
-  $user->update('abilasco', null, null, null, null);
-
+  // $user = new cp\User();
+  // $user->update('abraham-love', null, 'abraham.hate@google.com', 'Abraham', 'Smith');
+  //$user->update('abraham-ukachi', 'ilovenasa', 'abraham.ukachi@laplateforme.io', 'Abraham', 'Ukachi');
+  
   // METHOD 2
 
   // Print the resonses
   printResponses('testUpdate', $user);
 
 };
+
+
 /* ==== TEST ZONE ;) ==== */
 
 // Instantiate the `User` class as `user`
@@ -273,7 +284,7 @@ $testUpdate = function() use ($login, $password) {
 // $testRegister();
 
 // Uncomment the code below, to test the `connect()` method of `User` class
-$testConnect();
+// $testConnect();
 
 // Uncomment the code below, to test the `disconnect()` method of `User` class
 // $testDisconnect();
@@ -299,7 +310,7 @@ $testConnect();
 
 
 // Uncomment the code below, to test the `update()` method of `User` class
-$testUpdate();
+// $testUpdate();
 
 
 

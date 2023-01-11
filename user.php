@@ -852,7 +852,7 @@ class User extends Database {
    * Method used to update the user's password. 
    * NOTE: This method validates the given `password` before proforming an update.
    *
-   * @param string $password - The username/password of the user
+   * @param string $password - The password of the user
    *
    * @return bool $updatePasswordResult - Returns TRUE if the password was updated successfully
    */
@@ -912,7 +912,7 @@ class User extends Database {
    * Method used to update the user's email. 
    * NOTE: This method validates the given `email` before proforming an update.
    *
-   * @param string $email - The username/email of the user
+   * @param string $email - The email of the user
    *
    * @return bool $updateEmailResult - Returns TRUE if the email was updated successfully
    */
@@ -968,7 +968,7 @@ class User extends Database {
    * Method used to update the user's first name. 
    * NOTE: This method validates the given `firstname` before proforming an update.
    *
-   * @param string $firstname - The username/firstname of the user
+   * @param string $firstname - The first name of the user
    *
    * @return bool $updateFirstnameResult - Returns TRUE if the firstname was updated successfully
    */
@@ -1024,7 +1024,7 @@ class User extends Database {
    * Method used to update the user's last name. 
    * NOTE: This method validates the given `lastname` before proforming an update.
    *
-   * @param string $lastname - The username/lastname of the user
+   * @param string $lastname - The last name of the user
    *
    * @return bool $updateLastnameResult - Returns TRUE if the lastname was updated successfully
    */

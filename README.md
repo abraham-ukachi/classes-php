@@ -147,7 +147,8 @@ These are some of the things I did or plan to do, in addition to this project's 
 | 4 | *`Database - MYSQL - Test`* | **test/database.php** | [Done](./test/database.php)\* |
 | 5 | *`Database - PDO - Test`* | **test/database-pdo.php** | [Done](./test/database-pdo.php)\* |
 | 6 | *`Response Handler - Trait`* | **ResponseHandler.php** | [Done](./ResponseHandler.php)\* |
- 
+| 7 | *`User - MYSQLI - Test`* | **test/user.php** | [Done](./test/user.php) |
+| 8 | *`User - PDO - Test`* | **test/user-pdo.php** | Pending |
 
 > NOTE: (\*) = still needs to be updated. <br>
 > There's certainly a couple of file I must've forgot or not added yet,so I'll keep the above list updated obv. :)

@@ -178,57 +178,73 @@ class User extends Database {
     // call the constructor of MYSQLI Database
     parent::__construct(Database::TYPE_MYSQLI);
 
-    // >> CHALLENGE: Do not use `isset()` in this constructor #LOL
-    // << Challenge Accepted !!!
+    // IDEA: Register or connect the user automatically based on the given/passed arguments.
+    // However, all the arguments passed are ignored, if there's already a connected user
 
-    
-    // get all arguments of this constructor as `args`
-    $args = func_get_args();
-    
-    // Using our beloved ternary statement, check if all arguments are `null`.
-    // Well, technically: if the length of an 'only-null' list is equal to the length of `args`...
-    // TODO:? Use `array_unique()` function instead 
-    $allNullArgs = (count(array_keys($args, null)) == count($args)) ? true : false;
-    
-    
-    // Checking if only `login` and `password` parameters were passed in the constructor...
-    // IDEA: The first two parameters are `login` and `password`. Therefore the size or length of `args` must be 2 and *NOT NULL*.
-    // NOTE: We could also use PHP's built-in `ReflectionFunction` class, to get the exact parameter's name.
-    $onlyLoginAndPassword = (count($args) == 2) ? true : false;
+    // So, if the user is already connected...
+    if ($this->isConnected()) {
+      // ...get all his/her info as `userData`
+      $userData = $this->getAllInfos();
 
-    
-    // Check if all arguments were passed to this constructor,
-    // using our beloved ternary statement again #codeReadability
-    $allArgsPassed = (count($args) == 5) ? true : false; # <- 5 is the total number of params
+      // Populate the user's data in this class with `userData`
+      $this->populateUserData($userData);
 
-
-    // If all arguments are not null...
-    if (!$allNullArgs) {
-      // ..if there're only login and password arguments...
-      if ($onlyLoginAndPassword) {
-        // ...connect the user
-        $this->connect($login, $password);
-
-      } elseif ($allArgsPassed) { # <- all arguments were passed
-        // register the user
-        $this->register($login, $password, $email, $firstname, $lastname);
-
-      } else {
-        // do something else obv.
-      }
-
-      // DEBUG [4dbsmaster]: tell me about it :)
-      // printf("\x1b[33mAll arguments are not null \x1b[0m\n");
-      // printf("\x1b[34m(STATUS_SUCCESS_OK): %d \x1b[0m\n", self::$STATUS_SUCCESS_OK);
+    } else { # <- user is not connected
+       
+      // >> CHALLENGE: Do not use `isset()` in this constructor #LOL
+      // << Challenge Accepted !!!
+  
       
+      // get all arguments of this constructor as `args`
+      $args = func_get_args();
+      
+      // Using our beloved ternary statement, check if all arguments are `null`.
+      // Well, technically: if the length of an 'only-null' list is equal to the length of `args`...
+      // TODO:? Use `array_unique()` function instead 
+      $allNullArgs = (count(array_keys($args, null)) == count($args)) ? true : false;
+      
+      
+      // Checking if only `login` and `password` parameters were passed in the constructor...
+      // IDEA: The first two parameters are `login` and `password`. Therefore the size or length of `args` must be 2 and *NOT NULL*.
+      // NOTE: We could also use PHP's built-in `ReflectionFunction` class, to get the exact parameter's name.
+      $onlyLoginAndPassword = (count($args) == 2) ? true : false;
+  
+      
+      // Check if all arguments were passed to this constructor,
+      // using our beloved ternary statement again #codeReadability
+      $allArgsPassed = (count($args) == 5) ? true : false; # <- 5 is the total number of params
+  
+  
+      // If all arguments are not null...
+      if (!$allNullArgs) {
+        // ..if there're only login and password arguments...
+        if ($onlyLoginAndPassword) {
+          // ...connect the user
+          $this->connect($login, $password);
+  
+        } elseif ($allArgsPassed) { # <- all arguments were passed
+          // register the user
+          $this->register($login, $password, $email, $firstname, $lastname);
+  
+        } else {
+          // do something else obv.
+        }
+  
+        // DEBUG [4dbsmaster]: tell me about it :)
+        // printf("\x1b[33mAll arguments are not null \x1b[0m\n");
+        // printf("\x1b[34m(STATUS_SUCCESS_OK): %d \x1b[0m\n", self::$STATUS_SUCCESS_OK);
+        
+      }
+  
+      
+  
+      // DEBUG [4dbmaster]: tell me about `args` ;)
+      // print_r($args);
+      // printf("onlyLoginAndPassword => %s\n", json_encode($onlyLoginAndPassword));
+      // printf("all parameters were passed => %s\n", json_encode($allArgsPassed));
+  
     }
 
-    
-
-    // DEBUG [4dbmaster]: tell me about `args` ;)
-    // print_r($args);
-    // printf("onlyLoginAndPassword => %s\n", json_encode($onlyLoginAndPassword));
-    // printf("all parameters were passed => %s\n", json_encode($allArgsPassed));
 
   }
 
@@ -340,14 +356,16 @@ class User extends Database {
           
           // Get the user's `id` using the given `login`
           $id = $this->getUserIdByLogin($login);
+
           
-          // TODO:? Change/Convert this `id` into a token using our `encodeId()` function 
+          // Change/Convert this `id` into a token using our `encodeId()` function as `encodedId`
+          $encodedId = $this->encodeId($id);
           
           // Create a short-syntax associative array named `userData`,
           // which contains all the newly registered user's personal data.
           // NOTE: We're using the hashed password instead, for security reasons ;)
           $userData = [
-            'id' => $id,
+            'id' => $encodedId,
             'login' => $login,
             'password' => $hashPassword,
             'email' => $email,
@@ -420,10 +438,12 @@ class User extends Database {
       $result = filter_var($value, FILTER_VALIDATE_EMAIL);
       break;
     case self::VALIDATE_FIRST_NAME:
+      $value = htmlspecialchars($value); # <- encode special characters
       // first name must be ONE word 
       $result = (count(explode(' ', $value)) == 1) ? true : false;
       break;
     case self::VALIDATE_LAST_NAME:
+      $value = htmlspecialchars($value); # <- encode special characters
       // last name must be ONE word 
       $result = (count(explode(' ', $value)) == 1) ? true : false;
       break;
@@ -530,13 +550,20 @@ class User extends Database {
       // as an associative array named `userData`
       $userData = $result->fetch_assoc();
 
-      // TODO: Generate and append a login token to `userData`
-      // $this->token = $this->encodeId(
+      // Get the user's id as `userId`
+      $userId = (int) $userData['id'];
+
+      // Encode `userId` as `encodedId`
+      $encodedId = $this->encodeId($userId);
+
+      // update user's `id` in `userData` with the `encodedId`
+      $userData['id'] = $encodedId;
       
       // Populate the user data
       $this->populateUserData($userData);
 
       // Add `userData` to SESSION as `user` session variable
+      // TODO: Just add a token to the session instead (eg. 'user_token' or ['user']['token'])
       $_SESSION['user'] = $userData;
       
       // Update the response accordingly
@@ -586,7 +613,7 @@ class User extends Database {
     }
      
     // DEBUG [4dbsmaster]: tell me about it :)
-    // printf("\x1b[2m[disconnect]:\x1b[0m disconnectResult ? %s\n", json_encode($disconnectResult));
+    printf("\x1b[2m[disconnect]:\x1b[0m disconnectResult ? %s\n", json_encode($disconnectResult));
 
     // Return `disconnectResult`
     return $disconnectResult;
@@ -612,7 +639,7 @@ class User extends Database {
         // NOTE: This query uses the user's id for deletion
         $delete_user_query = "
         DELETE FROM `{$this->db_tablename}`
-        WHERE id = '{$this->id}'
+        WHERE id = '{$this->getUserId()}'
         ";
 
         // DEBUG [4dbsmaster]: tell me about it ;)
@@ -664,56 +691,90 @@ class User extends Database {
    * @param string $firstname : (optional) The first name of the user
    * @param string $lastname : (optional) The last name of the user
    *
-   * @return bool $updateResult - Returns TRUE if the a user's info was updated successfully
+   * @return array $updateResult - An indexed array of all the fields that were updated successfully. Returns **empty** (i.e. `[]`), if no field/column was updated.
    */
   public function update($login = null, $password = null, $email = null, $firstname = null, $lastname = null) {
-    // Initialize the `updateResult` variable
-    $updateResult = false;
+    // Initialize the `updateResult` variable,
+    // by setting it to an empty array / list.
+    $updateResult = [];
 
-    // IDEA: Update each "info" separately and assign its result to `updateResult`, to make it optional
-    // TODO: Handle errors during update
+    // If the user is connected ...
+    if ($this->isConnected()) {
 
-    // If `login` is not null...
-    if ($login !== null) {
-      // ...update the login
-      $updateResult = $this->updateLogin($login);
-    }
-        
-    // If `password` is not null...
-    if ($password !== null) {
-      // ...update the password
-      $updateResult = $this->updatePassword($password);
-    }
-        
-    // If `email` is not null...
-    if ($email !== null) {
-      // ...update the email
-      $updateResult = $this->updateEmail($email);
-    }
-        
-    // If `firstname` is not null...
-    if ($firstname !== null) {
-      // ...update the firstname
-      $updateResult = $this->updateFirstname($firstname);
-    }
-        
-    // If `lastname` is not null...
-    if ($lastname !== null) {
-      // ...update the lastname
-      $updateResult = $this->updateLastname($lastname);
-    }
+      // IDEA: To really make each field optional, update them separately and 
+      //       append their name to the `updatedFields` list    
+      
+      // TODO: Handle each field error correctly ;)
 
+      // Updating the Login...
+
+      if (isset($login)) {
+        $this->updateLogin($login);
+        $updateResult[] = 'login';
+      }
+
+
+
+      // Updating the Password...
+
+      if (isset($password)) {
+        $this->updatePassword($password);
+        $updateResult[] = 'password';
+      }
+
+
+
+      // Updating the Email...
+
+      if (isset($email)) {
+        $this->updateEmail($email);
+        $updateResult[] = 'email';
+      }
+
+
+
+      // Updating the First Name...
+
+      if (isset($firstname)) {
+        $this->updateFirstname($firstname);
+        $updateResult[] = 'firstname';
+      }
+
+
+      
+      // Updating the Last Name...
+      
+      if (isset($lastname)) {
+        $this->updateLastname($lastname);
+        $updateResult[] = 'lastname'; 
+      }
+
+
+      // If the `updateResult` list is not empty...
+      if (!empty($updateResult)) {
+        // ...get the number of fields that were updated as `numFields`
+        $numFields = count($updateResult);
+
+        // Update the response accordingly ;)
+        $this->updateResponse(1, self::$STATUS_SUCCESS_OK, "Update successful: $numFields fields have been updated successfully");
+
+      }else { # <- `updateResult` list is empty (a.k.a. no update) 
+
+        // Update the response accordingly ;)
+        $this->updateResponse(0, self::$STATUS_ERROR_BAD_REQUEST, "Update failed: no field was updated");
+      }
+
+
+    } else { # <- user is not connected
     
-    // If `updateResult` is TRUE (i.e. no errors occurred)...
-    if ($updateResult === true) {
-      // ...update the response accordingly ;)
-      $this->updateResponse(1, self::$STATUS_SUCCESS_OK, "Update successful: User's info has been updated successfully");
-
-    }else { # <- an error occurred during user info update
-      // ...update the response accordingly ;)
-      $this->updateResponse(0, self::$STATUS_ERROR_UNPROCESSABLE_ENTITY, "Update Error #1240: User's info could not be updated");
+      // Update the response accordingly ;)
+      $this->updateResponse(0, self::$STATUS_ERROR_NOT_FOUND, "Update error: User is not connected");
+        
     }
 
+    // DEBUG [4dbsmaster]: tell me about the `updateResult` list
+    printf("[update]: updateResult =:");
+    print_r($updateResult);
 
     // Return `updateResult`
     return $updateResult;
@@ -1031,31 +1092,33 @@ class User extends Database {
     //       2. The user is valid (i.e. his/her decoded `id` exists in the database)
 
     // Create a `userInSession` variable
-    // and assign TRUE, if the session has been started and it has 'user' as a variable,
+    // and assign TRUE, if the session has been started and it has a 'user' variable,
     $userInSession = (isset($_SESSION) && isset($_SESSION['user'])) ? true : false;
 
-    // If the user is in session...
+    // If there's a user is in session...
     if ($userInSession) {
-      // ...get the encoded id of that user as `encodedId`
-      // $encodedId = $_SESSION['user']['id'];
+      // ...get the user's encoded `id` or token from session as `encodedId`
+      $encodedId = $_SESSION['user']['id'];
 
-      // decode `encodedId` as `id`
-      // $id = $this->decodeId($encodedId);
+      // Decode `encodedId` as `userId`
+      $userId = $this->decodeId($encodedId);
 
-      // Get the user id from SESSION
-      $id = $_SESSION['user']['id'];
+      // Check if the user with this `userId` is valid or not,
+      // and update the `connected` variable accordingly ;)
+      $connected = $this->isValidUser($userId);
 
-      // Check if the user with this `id` is valid or not,
-      // and update the `connected` variable accordingly
-      $connected = $this->isValidUser($id);
+      // If there's a user in session that's not connected,
+      // remove his/her `user` data from the session
+      if ($connected == false) { unset($_SESSION['user']); }
+
+      // DEBUG [4dbsmaster]: tell me about it :)
+      printf("[isConected](2): encodedId => %s & userId (decoded) => %s\n", $encodedId, $userId);
+
     }
 
 
-    // DEBUG [4dbsmaster]: tell me about it :)
-    printf("[isConected](1): userInSession => %s\n", json_encode($userInSession));
-    // printf("[isConected](2): encodedId => %s\n", $encodedId);
-    // printf("[isConected](3): id => %d\n", $id);
-    printf("[isConected](4): connected => %s\n", json_encode($connected));
+      // DEBUG [4dbsmaster]: tell me about it :)
+      printf("[isConected](1): userInSession => %s & connected ? \n", json_encode($userInSession), json_encode($connected));
 
     // Return `connected`
     return $connected;
@@ -1064,12 +1127,13 @@ class User extends Database {
 
   /* === PUBLIC GETTERS === */
 
+
   /**
-   * Returns all the user's current information.
+   * Returns all the user's **CURRENT** personal information.
    * 
    * @param array $excludes - List of items that should be excluded from the user's info (e.g 'password')
    *
-   * @return array - A list containing all the user's info (i.e. 'login', 'email', etc.)
+   * @return array - An associative array containing all the user's info (e.g: [ "login" => "abraham-ukachi", "password" => "******",...])
    */
   public function getAllInfos($excludes = []) {
     // Initialize the `allInfos` variable
@@ -1077,7 +1141,29 @@ class User extends Database {
     
     // If the user is connected...
     if ($this->isConnected()) :
+      // ...get the user's encoded `id` from session as `encodedId`
+      $encodedId = $_SESSION['user']['id'];
+
+      // Decode this `encodedId` as `userId`
+      $userId = $this->decodeId($encodedId);
+
+      // Create an SQL query string to retrieve all the user's current info as `user_info_query`
+      $user_info_query = "
+      SELECT * FROM `{$this->db_tablename}`
+      WHERE id = '{$userId}'
+      ";
+
+      // Perform our `user_info_query` against the database via MYSQLI as `mysqli_result`
+      $mysqli_result = $this->mysqli->query($user_info_query);
+      
+      // Retrieve all user's info from `mysqli_result` as `allInfos`
+      $allInfos = $mysqli_result->fetch_assoc();
+
+      // Change `id` in `allInfos` to the predefined `encodedId`
+      $allInfos['id'] = $encodedId;
+      
       // ...populate the `allInfos` array with the user's infos
+      /*
       $allInfos = array(
         'id' => $this->id,
         'login' => $this->login,
@@ -1086,6 +1172,7 @@ class User extends Database {
         'firstname' => $this->firstname,
         'lastname' => $this->lastname
       );
+      */
 
       // Removing unwanted items from the list,
       // For each item in the `excludes` list...
@@ -1093,7 +1180,7 @@ class User extends Database {
         // ...remove that item 
         unset($allInfos[$item]);
         // DEBUG [4dbsmaster]: tell me about it ;)
-        printf("$item has been excluded from the `allInfos` list");
+        printf("$item has been excluded from the `allInfos` list\n");
       }
 
     endif;
@@ -1239,6 +1326,23 @@ class User extends Database {
     return $password;
   }
 
+  
+  /**
+   * Returns the "real" / decoded user's id
+   * NOTE: This method decodes the currently available `id` property of this class.
+   *
+   * @return int $userId - The user's id
+   */
+  private function getUserId() {
+    // Get the decoded id of this class as `userId` w/ default key
+    $userId = $this->decodeId($this->id);
+
+    // TODO:? Do something awesome with the `userId` here ;)
+    
+    // return `userId`
+    return $userId;
+  }
+
 
 
   // PRIVATE METHODS
@@ -1284,8 +1388,6 @@ class User extends Database {
     // Define the separator as `sep`
     $sep = "_";
 
-    // DEBUG [4dbsmaster]: tell me about this `encodedId` ;)
-    printf("[decodeId]: encodedId => %s", $encodedId);
 
     // get the decoded / hexadecimally encoded id as `bin`
     $bin = hex2bin($encodedId);
@@ -1300,17 +1402,15 @@ class User extends Database {
       // ...update the `id` accordingly
       $id = (int) $arr[1];
     }
+    
+    // DEBUG [4dbsmaster]: tell me about this `encodedId` ;)
+    // printf("[decodeId]: encodedId => %s & id => %d\n", $encodedId, $id);
 
-    $bin = explode($sep, array($key, $id)); # <- returns eg. 'students-laplateforme.io_20' (if 20 is the value of `id`)
-    // get the hexadecimal representation of `bin` as `hex`
-    $hex = bin2hex($bin); 
-
-    // Return `hex`
-    return $hex;
-
-    // Return the `result`
-    return $result;
+    // Return the `id`
+    return $id;
   }
+
+
 
   /**
    * Verifies that the given `id` matches a `hex`.
@@ -1321,10 +1421,11 @@ class User extends Database {
    * @return bool - Return TRUE if the `id` and `hex` match
    */
   private function verifyId($id, $hex) {
-    // return TRUE if the encoded `id` is equal the `hex` value,
+    // return TRUE if the decoded `hex` is equal the given `id`,
     // using our beloved ternary statement.
-    return ($this->encodeId($id) === $hex) ? true : false;
+    return ($this->decodeId($hex) === $id) ? true : false;
   }
+
 
   
   // ==========
@@ -1446,7 +1547,7 @@ class User extends Database {
       $update_col_query = "
       UPDATE `{$this->db_tablename}`
       SET $info = '{$value}'
-      WHERE id = '{$this->id}'
+      WHERE id = '{$this->getUserId()}'
       ";
 
       try { # <- Trying to update our database...

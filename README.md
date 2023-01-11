@@ -124,7 +124,7 @@ open http://localhost/classes-php
 
 | Browser | Version | Status | Date | Time
 |:--------|:--------|:-------|:-----|:-----
-| *`Brave`* | **1.45.127** | Testing | 02-01-2023 | 08:52:00
+| *`Brave`* | **1.46.144** | Testing | 11-01-2023 | 18:55:00
 | *`Chrome`* | **-** | *Pending* | - | -
 | *`Firefox`* | **-** | *Pending* | - | -
 | *`Safari`* | **-** | *Pending* | - | -

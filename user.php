@@ -721,10 +721,10 @@ class User extends Database {
       $this->updateEmail($email) && $updateResult[] = self::FIELD_EMAIL;
 
       // Updating Firstname and append it to `updateResult`
-      $this->updateEmail($firstname) && $updateResult[] = self::FIELD_FIRST_NAME;
+      $this->updateFirstname($firstname) && $updateResult[] = self::FIELD_FIRST_NAME;
 
       // Updating Lastname and append it to `updateResult`
-      $this->updateEmail($lastname) && $updateResult[] = self::FIELD_LAST_NAME;
+      $this->updateLastname($lastname) && $updateResult[] = self::FIELD_LAST_NAME;
 
 
 

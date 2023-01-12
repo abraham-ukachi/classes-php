@@ -90,11 +90,19 @@ use mysqli_driver;
  */
 class Database {
 
-  // constants
-  const TYPE_MYSQLI = 'mysqli';
-  const TYPE_PDO = 'pdo';
-  const ERROR_NOT_FOUND = 0;
-  const ERROR_FOUND = 1;
+  // public constants
+  public const TYPE_MYSQLI = 'mysqli';
+  public const TYPE_PDO = 'pdo';
+  public const ERROR_NOT_FOUND = 0;
+  public const ERROR_FOUND = 1;
+  // fields - constants
+  public const FIELD_ID = 'id';
+  public const FIELD_LOGIN = 'login';
+  public const FIELD_PASSWORD = 'password';
+  public const FIELD_EMAIL = 'email';
+  public const FIELD_FIRST_NAME = 'firstname';
+  public const FIELD_LAST_NAME = 'lastname';
+
 
   // private properties
   private $db_host = '127.0.0.1';
@@ -150,7 +158,8 @@ class Database {
       // Create the project-specific database (if it *DOES NOT* exist)
       $this->dbCreation();
     endif;
-    
+
+   print_r($this->getTableQuery());
   } 
 
 
@@ -279,12 +288,12 @@ class Database {
    */
   private function getTableQuery() {
     return "CREATE TABLE IF NOT EXISTS " . $this->db_tablename . " (
-      id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-      login VARCHAR(30) NOT NULL,
-      password VARCHAR(255) NOT NULL,
-      email VARCHAR(50) NOT NULL,
-      firstname VARCHAR(30) NOT NULL,
-      lastname VARCHAR(30) NOT NULL
+      " . self::FIELD_ID . " INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+      " . self::FIELD_LOGIN . " VARCHAR(30) NOT NULL,
+      " . self::FIELD_PASSWORD . " VARCHAR(255) NOT NULL,
+      " . self::FIELD_EMAIL . " VARCHAR(50) NOT NULL,
+      " . self::FIELD_FIRST_NAME . " VARCHAR(30) NOT NULL,
+      " . self::FIELD_LAST_NAME . " VARCHAR(30) NOT NULL
     )"; // <- TODO:? Specify an Engine like `innoDB` 
 
   }

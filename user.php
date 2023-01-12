@@ -137,15 +137,20 @@ session_start();
 
 
 
-// Declare a class named `User`, 
-// as per project requirement.
+/**
+ * Declare a class named `User`, 
+ * as per project requirement.
+ * TODO: Rename 'login' to 'username'
+ */
 class User extends Database {
   // Using some traits (a.k.a step parents) in this class
   use ResponseHandler;
 
   // Define some constants...
-  // public constantas
-  const VALIDATE_LOGIN = 770;
+
+  // public constants
+  // VALIDATEs
+  public const VALIDATE_LOGIN = 770;
   public const VALIDATE_PASSWORD = 771;
   public const VALIDATE_EMAIL = 772;
   public const VALIDATE_FIRST_NAME = 773;
@@ -702,52 +707,25 @@ class User extends Database {
     if ($this->isConnected()) {
 
       // IDEA: To really make each field optional, update them separately and 
-      //       append their name to the `updatedFields` list    
-      
+      //       append their name to the `updatedFields` list   
       // TODO: Handle each field error correctly ;)
 
-      // Updating the Login...
 
-      if (isset($login)) {
-        $this->updateLogin($login);
-        $updateResult[] = 'login';
-      }
+      // Updating Login and append it to `updateResult`
+      $this->updateLogin($login) && $updateResult[] = self::FIELD_LOGIN;
 
+      // Updating Password and append it to `updateResult`
+      $this->updatePassword($password) && $updateResult[] = self::FIELD_PASSWORD;
 
+      // Updating Email and append it to `updateResult`
+      $this->updateEmail($email) && $updateResult[] = self::FIELD_EMAIL;
 
-      // Updating the Password...
+      // Updating Firstname and append it to `updateResult`
+      $this->updateEmail($firstname) && $updateResult[] = self::FIELD_FIRST_NAME;
 
-      if (isset($password)) {
-        $this->updatePassword($password);
-        $updateResult[] = 'password';
-      }
+      // Updating Lastname and append it to `updateResult`
+      $this->updateEmail($lastname) && $updateResult[] = self::FIELD_LAST_NAME;
 
-
-
-      // Updating the Email...
-
-      if (isset($email)) {
-        $this->updateEmail($email);
-        $updateResult[] = 'email';
-      }
-
-
-
-      // Updating the First Name...
-
-      if (isset($firstname)) {
-        $this->updateFirstname($firstname);
-        $updateResult[] = 'firstname';
-      }
-
-
-      
-      // Updating the Last Name...
-      
-      if (isset($lastname)) {
-        $this->updateLastname($lastname);
-        $updateResult[] = 'lastname'; 
-      }
 
 
       // If the `updateResult` list is not empty...
@@ -820,7 +798,7 @@ class User extends Database {
 
       // STEP2 : validate then update the login
 
-      // If the login failed the validation process...
+      // If the login/username failed the validation process...
       if (!$this->validate($login, self::VALIDATE_LOGIN)) {
         // ...update the response accordingly ;)
         $this->updateResponse(0, self::$STATUS_ERROR_UNPROCESSABLE_ENTITY, "Invalid Login: No special characters allowed (only '-' and '.')");

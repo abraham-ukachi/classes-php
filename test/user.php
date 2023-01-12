@@ -265,8 +265,9 @@ $testUpdate = function() use ($login, $password) {
   // METHOD 1: Instantiate the `User` class as `user` with login and password
   $user = new cp\User($login, $password);
   // $user = new cp\User();
+  $user->update('abraham-ukachi', null, 'abrahamukachi@gmail.com');
   // $user->update('abraham-love', null, 'abraham.hate@google.com', 'Abraham', 'Smith');
-  //$user->update('abraham-ukachi', 'ilovenasa', 'abraham.ukachi@laplateforme.io', 'Abraham', 'Ukachi');
+  // $user->update('abraham-ukachi', 'ilovenasa', 'abraham.ukachi@laplateforme.io', 'Abraham', 'Ukachi');
   
   // METHOD 2
 
@@ -310,7 +311,7 @@ $testUpdate = function() use ($login, $password) {
 
 
 // Uncomment the code below, to test the `update()` method of `User` class
-// $testUpdate();
+$testUpdate();
 
 
 

@@ -157,11 +157,19 @@ These are some of the things I did or plan to do, in addition to this project's 
 
 - [ ] Optimize all `.php` files
 - [ ] Remove unnecessary comments
-- [ ] Add screenshots
+- [x] Add screenshots
 
 ---
 
 ## Some Random Screenshots
+
+### PHP Method testing 
+
+| METHOD | SUCCESS | FAILED  | 
+|:-------|:--------|:--------|
+| **`testRegister()`** | ![Register Successful - Screenshot](./screenshots/register_successful.png) | ![Register Failed - Screenshot](./screenshots/register_failed.png)
+| **`testLogin()`** | ![Login Successful - Screenshot](./screenshots/login_successful.png) | ![Login Failed - Screenshot](./screenshots/login_failed.png)
+| **`testUpdate()`** | ![Update Successful - Screenshot](./screenshots/update_successful.png) | ![Update Failed - Screenshot](./screenshots/update_failed.png)
 
 
 ### On Mobile
@@ -171,3 +179,5 @@ None
 ### On Laptop
 
 None
+
+

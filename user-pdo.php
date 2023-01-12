@@ -44,7 +44,7 @@
 *    -|> $login = 'abraham-ukachi';
 *    -|> $password = '*******'; # <- hidden ;) but must be a `string`
 *    -|> $email = 'abraham.ukachi@laplateforme.io';
-*    -|> $firstname = 'Abraham';
+*    -|> $firstname = 'Abraham');
 *    -|> $lastname = 'Ukachi';
 *    -|>  
 *    -|> $user->register($login, $password, $email, $firstname, $lastname);
@@ -82,17 +82,14 @@
 *   - firstname
 *   - lastname 
 *
-* - Créez un fichier nommé “User.php”. 
-*   Dans ce fichier, créez une classe “User” qui contient les attributs suivants :
+* - Créez un fichier nommé “user-pdo.php”. 
+*   Dans ce fichier, créez une classe “Userpdo” en vous basant sur la classe “User” que vous avez créé dans l’étape 1 
+*   avec les mêmes méthodes, et qui contient les attributs suivants :
 *   - private $id
 *   - public $login
 *   - public $email
 *   - public $firstname
 *   - public $lastname
-*
-* - Dans le même dossier créez un autre fichier nommé “user-pdo.php”.
-* - Dans ce fichier, créez une classe “Userpdo” en vous basant sur la classe “User” 
-*   que vous avez créé dans l’étape 1 avec les mêmes méthodes du tableau ci-dessus.
 * 
 * ============================
 * ATTENTION: Cette fois-ci vos requêtes SQL doivent maintenant être faites avec la méthode PDO et _plus du tout en mysqli_. 
@@ -110,17 +107,15 @@
 *   - firstname
 *   - lastname
 *
-* -  Create a file named “User.php”. 
-*    In this file, create a “User” class that contains the following attributes:
+* -  Create a file named “user-pdo.php”. 
+*    In this file, create a “Userpdo” class based on the “User” class you created in step 1 using the same methods, 
+*    and that contains the following attributes:
 *    - private $id
 *    - public $login
 *    - public $email
 *    - public $firstname
 *    - public $lastname
 *
-* - In the same folder create another file named “user-pdo.php”.
-* - In this file, create a “Userpdo” class based on the “User” 
-*   class you created in step 1 using the same methods in the table above.
 *
 * ============================
 * WARNING: This time your SQL queries must now be done with the PDO method and _no longer in mysqli_. 

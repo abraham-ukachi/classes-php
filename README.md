@@ -120,11 +120,11 @@ open http://localhost/classes-php
 
 ---
 
-## Testing
+## Browser Support / Testing
 
 | Browser | Version | Status | Date | Time
 |:--------|:--------|:-------|:-----|:-----
-| *`Brave`* | **1.46.144** | Testing | 12-01-2023 | 12:37:00
+| *`Brave`* | **1.46.144** | [Tested](./test/user-pdo.php) | 12-01-2023 | 12:37:00
 | *`Chrome`* | **-** | *Pending* | - | -
 | *`Firefox`* | **-** | *Pending* | - | -
 | *`Safari`* | **-** | *Pending* | - | -
@@ -165,11 +165,11 @@ These are some of the things I did or plan to do, in addition to this project's 
 
 ### PHP Method testing 
 
-| METHOD | SUCCESS | FAILED  | 
+| NAME | SUCCESS | FAILED  | 
 |:-------|:--------|:--------|
-| **`testRegister()`** | ![Register Successful - Screenshot](./screenshots/register_successful.png) | ![Register Failed - Screenshot](./screenshots/register_failed.png)
-| **`testLogin()`** | ![Login Successful - Screenshot](./screenshots/login_successful.png) | ![Login Failed - Screenshot](./screenshots/login_failed.png)
-| **`testUpdate()`** | ![Update Successful - Screenshot](./screenshots/update_successful.png) | ![Update Failed - Screenshot](./screenshots/update_failed.png)
+| **`register`** | ![Register Successful - Screenshot](./screenshots/register_successful.png) | ![Register Failed - Screenshot](./screenshots/register_failed.png)
+| **`connect`** | ![Login Successful - Screenshot](./screenshots/login_successful.png) | ![Login Failed - Screenshot](./screenshots/login_failed.png)
+| **`update`** | ![Update Successful - Screenshot](./screenshots/update_successful.png) | ![Update Failed - Screenshot](./screenshots/update_failed.png)
 
 
 ### On Mobile

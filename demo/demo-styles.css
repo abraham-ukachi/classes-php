@@ -1,0 +1,321 @@
+/* Body */
+body {
+  width: 100%;
+  height: 100vh;
+  background: #1a1a1a;
+  color: #e7e7e7;
+  font-size: 18px;
+  font-family: courier;
+
+  /* Webkit Browsers */
+  -webkit-font-smoothing: antialiased;
+  /* Safari & Chrome */
+  text-rendering: optimizeLegibility;
+  /* Firefox */
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Direct code of the body */
+body > code {
+  opacity: 0.5;
+}
+
+/* H2 - Title */
+h2 {
+  color: yellow;
+  /* font-family: cursive; */
+}
+
+
+/* Any link in H2 - Title */
+h2 a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Underline link in H2 - Title when user hover's over it */
+h2 a:hover {
+  text-decoration: underline;
+}
+
+/* Main & Aside */
+main, aside {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+
+/* All Containers */
+.container {
+  position: relative;
+  width: inherit;
+  height: inherit;
+}
+
+/* Main */
+main {
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+}
+
+/* Main Container */
+main > .container {
+  padding: 12px 24px;
+  box-sizing: border-box;
+}
+
+main > .container > h2 {
+  text-transform: uppercase;
+  color: dimgrey;
+}
+
+/* Box */
+.box {
+  box-sizing: border-box;
+  padding: 24px;
+  background: black;
+  color: white;
+  border-radius: 12px;
+}
+
+
+/* Aside */
+aside {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+  opacity: 0.95;
+
+  transform: translateY(75%);
+
+  -webkit-transition: transform 200ms ease-in-out;
+  -moz-transition: transform 200ms ease-in-out;
+  transition: transform 200ms ease-in-out;
+
+}
+
+/* Opened Aside */
+aside[opened] {
+  transform: translateY(0%);
+}
+
+/* When Aside is closed */
+aside:not([opened]) {
+  cursor: pointer;
+}
+
+/* Whenever Aside is closed and the user hovers over it,
+ * change the handle's background to white */
+aside:not([opened]):hover #handle {
+  background: white;
+}
+
+/* Aside Container */
+aside > .container {
+  background: #2c2c2c;
+  overflow: hidden;
+  border-radius: 24px 24px 00 0;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Handle */
+#handle {
+  width: 30%;
+  height: 5px;
+  background: #7b7b7b;
+  margin: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#handle:hover {
+  background: yellow;
+}
+
+/* If aside/drawer is closed, 
+ * remove pointer events of the drawer's handle */
+aside:not([opened]) #handle {
+  pointer-events: none;
+}
+
+/* Form */
+form {
+  width: 90%;
+  height: auto;
+}
+
+/* Label */
+label {
+  font-family: monospace;
+  color: #9c9c9c;
+}
+
+/* Input */
+input, select {
+  border-radius: 5px;
+  background: #343434;
+  border: 0;
+  padding: 8px 16px;
+  margin: 8px 0 16px;
+  font-size: 24px;
+  color: white;
+}
+
+/* Hover styles of all inputs except the submit input button */
+input:not([type="submit"]):hover, select:hover {
+  outline: 2px solid white;
+}
+
+input:not([type="submit"]):focus, select:focus {
+  outline: 2px solid yellow;
+}
+
+/* Submit Input */
+input[type="submit"] {
+  background: #f0ed0f;
+  color: black;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-size: medium;
+  font-weight: bold;
+  padding: 16px;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  margin-top: 48px;
+}
+
+select {
+  flex: 1;
+  /* height: 40px; */
+  /* padding: 0 12px; */
+  margin-left: 12px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* Toast */
+.toast {
+  background: darkgreen;
+  color: white;
+  /* padding: 8px 16px; */
+  border-radius: 0 0 16px 16px;
+  width: 90%;
+  font-size: 14px;
+  font-family: monospace;
+  max-width: 600px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  font-weight: bold;
+  margin: 0 auto;
+  text-align: center;
+  z-index: 10;
+}
+
+/* Span in Toast */
+.toast span {
+  color: #b9ff9d;
+}
+
+/* Code in Toast */
+.toast code {
+  position: absolute;
+  left: 20px;
+  font-weight: bold;
+  opacity: 0.3;
+}
+
+
+/* Error Toast */
+.toast.error {
+  background: #752116;
+}
+
+/* Span in Good Toast */
+.toast.error span {
+  color: #edb2b8;
+}
+
+
+/* Set the maximum width of all forms and div.toast */
+/* form, .toast { max-width: 600px; } */
+
+
+/* We alway need our fullbleed :) */
+[fullbleed] {
+  margin: 0;
+  padding: 0;
+}
+
+/*** Flex Layout Styles ***/
+
+/* Layout */
+.layout {
+  display: flex;
+}
+
+/* Vertical Layout*/
+.vertical.layout {
+  flex-direction: column;
+}
+
+/* Horizontal Layout */
+.horizontal.layout {
+  flex-direction: row;
+}
+
+/* Centered Layout */
+.centered.layout {
+  justify-content: center;
+  align-items: center;
+}
+
+/* Just center the items in the layout */
+.center.layout {
+  align-items: center;
+}
+
+/*** END of Flex Layout Styles ***/
+
+
+/* Inputs Wrapper */
+.inputs-wrapper {
+  max-height: 300px;
+  overflow-y: scroll;
+  padding: 8px 16px;
+  box-sizing: border-box;
+}
+
+
+
+
+/*** Wide Layout - Media Query ***/
+@media (min-width: 460px) {
+  
+  /* H2 - Title */
+  h2 {
+    font-size: 50px;
+  }
+
+  /* Aside */
+  aside {
+    transform: translateY(70%);
+  }
+
+  /* Toast */
+  .toast {
+    width: 70%;
+    font-size: 16px;
+    /* padding: 12px 24px; */
+  }
+
+}
+
+/*** END of Wide Layout - Media Query ***/
+

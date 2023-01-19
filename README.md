@@ -5,7 +5,7 @@ A school project "introducing" me to PHP's classes and methods using **MYSQLI** 
 
 I'd already used PHP's classes and methods in a [previous project](https://github.com/abraham-ukachi/module-connexion), and intended to implement more of those in upcoming jobs. However, as of right now, I've not yet used an **OOP Class** to establish a database connection and/or execute some **CRUD** operations via `mysqli` and `pdo` 😉. So, I can't wait to start this project; I'm sure I'll learn something new 😍.
 
-> TO MY TEACHERS (i.e. [Ruben](?), [Nikola](?), [Aurelie](?) and co.): thanks for these amazingly intuitive projects; they light up a fire in me 🔥🔥, and make me excited `&&` happy to get outta bed every morning - **You Guys Rock !!!** 🙏❤️ 😘. P.S. tnx 4 naming the methods (names + params) in `en`.
+> TO MY TEACHERS (i.e. [Ruben](?), [Nicolas](?), [Aurélie](?) and co.): thanks for these amazingly intuitive projects; they light up a fire in me 🔥🔥, and make me excited `&&` happy to get outta bed every morning - **You Guys Rock !!!** 🙏❤️ 😘. P.S. tnx 4 naming the methods (names + params) in `en`.
 
 > BTW: **HAPPY NEW YEAR 2023 !!!** This is the first project of the year ! Hooray !!! 🥳 🎉🎊 
 
